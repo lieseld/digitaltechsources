@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'alias' => 'Liesel',
             'form' => 'SS07',
             'group' => 'Administrator',
+            'educational_institution' => 'The Heights School',
             'email' => 'lieselta@gmail.com',
             'password' => Hash::make('password'),
             'administrator' => true

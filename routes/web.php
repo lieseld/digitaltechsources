@@ -13,4 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->middleware('auth')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/account', 'AccountController@userProfile')->name('account.profile');
