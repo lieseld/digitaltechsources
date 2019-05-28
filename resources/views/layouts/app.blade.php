@@ -17,10 +17,24 @@
 </head>
 <body>
     <app>
-        <nav class="ui fixed inverted menu">
+        <nav class="ui fixed menu">
             <div class="ui container">
                 <a href="{{ url('/') }}" class="header item">
                     Digitaltechsources
+                </a>
+                <div class="right menu">
+                    <div class="item">
+                        <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            </div>
         </nav>          
         <main>
             @yield('content')
