@@ -11,6 +11,7 @@
 
     <!--Stylesheets-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q=" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/se/dt-1.10.18/datatables.min.css"/>
 
     <!--Scripts-->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -18,6 +19,7 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="https://cdn.datatables.net/v/se/dt-1.10.18/datatables.min.js"></script>
     <style>
         .ui.footer.segment {
             margin: 5em 0em 0em;
@@ -59,6 +61,12 @@
                 </a>
                 <div class="right menu">
                     @if (Auth::check())
+                    @if (Auth::user()->administrator)
+                    <a href="{{route('admin.index')}}" class="{{Request::is('admin') || Request::is('admin/*') ? 'active' : ''}} item ">
+                        <i class="cog icon"></i>
+                        Admin
+                    </a>
+                    @endif
                     <div class="ui simple dropdown item">
                         <i class="user icon"></i>
                         {{Auth::user()->name}}
@@ -89,6 +97,47 @@
                 </div>
             </div>
         </nav>
+        @if (session()->has('flash_notification.green'))
+            <div>
+                <div class="ui green message" style="border-radius: 0;">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            {{ Session::get('flash_notification.green') }}
+                        </div>
+                </div>
+            </div>
+            <script>
+                $('.ui.green.message')
+                    .on('click', function() {
+                        $(this)
+                            .closest('.message')
+                            .transition('fade')
+                        ;
+                    })
+                ;
+            </script>
+        @elseif (session()->has('flash_notification.red'))
+            <div>
+                <div class="ui red message" style="border-radius: 0;">
+                    <div class="ui container">
+                        <i class="close icon"></i>
+                        <p>
+                            {{ Session::get('flash_notification.red') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $('.ui.red.message')
+                    .on('click', function() {
+                        $(this)
+                            .closest('.message')
+                            .transition('fade')
+                        ;
+                    })
+                ;
+            </script>
+        @endif
         <main>
             @yield('content')
         </main>

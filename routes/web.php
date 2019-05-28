@@ -16,3 +16,13 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/account', 'AccountController@userProfile')->name('account.profile');
+Route::post('/account/changeemail', 'AccountController@changeEmail')->name('account.changeemail');
+Route::view('/account/data/download', 'accounts.data.download')->name('account.datadownload');
+Route::post('/account/data/download', 'AccountController@processDataDownload')->name('account.datadownload.request');
+
+Route::get('/admin', 'AdminController@index')->name('admin.index');
+Route::get('/admin/users', 'AdminController@users')->name('admin.users');
+
+Route::get('/test', function(){
+    return \App\User::all()->toJson(JSON_PRETTY_PRINT);
+});
