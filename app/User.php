@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'alias', 'form', 'group', 'educational_institution', 'email', 'password', 'administrator'
+        'name', 'alias', 'group', 'educational_institution', 'profession', 'activated', 'activated_at', 'country', 'email', 'password', 'administrator'
     ];
 
     /**
@@ -36,4 +36,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profession() {
+        switch ($this->profession)
+        {
+            case 0:
+                return "Student";
+                break;
+            case 1:
+                return "Teacher";
+                break;
+            case 2:
+                return "Professional";
+                break;
+            case 3:
+                return "Hobbyist";
+                break;
+            default:
+                return null;
+        }
+    }
 }

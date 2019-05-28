@@ -12,6 +12,7 @@
 */
 
 Auth::routes();
+Route::view('/register/completed', 'auth.registercompleted')->name('auth.registercompleted');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -22,6 +23,10 @@ Route::post('/account/data/download', 'AccountController@processDataDownload')->
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/users', 'AdminController@users')->name('admin.users');
+Route::get('/admin/registrations', 'AdminController@registrations')->name('admin.registrations');
+Route::get('/admin/registrations/{id}', 'AdminController@viewPendingRegistration')->name('admin.registrations.view');
+
+
 
 Route::get('/test', function(){
     return \App\User::all()->toJson(JSON_PRETTY_PRINT);

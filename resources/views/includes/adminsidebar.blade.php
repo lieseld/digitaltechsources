@@ -7,9 +7,11 @@
         <i class="users icon"></i>
         Users
     </a>
-    <a href="#" class="item">
+    <a href="{{route('admin.registrations')}}" class="item">
         <i class="envelope open icon"></i>
         Registrations
-        <div class="ui blue label">1</div>
+        @if (count(\App\User::where('activated', false)->get()) >= 1)
+        <div class="ui blue label">{{count(\App\User::where('activated', false)->get())}}</div>
+        @endif
     </a>
 </div>

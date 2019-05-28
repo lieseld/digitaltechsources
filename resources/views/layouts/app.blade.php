@@ -20,14 +20,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://cdn.datatables.net/v/se/dt-1.10.18/datatables.min.js"></script>
+    <script src="{{asset('js/countries.js')}}"></script>
     <style>
         .ui.footer.segment {
             margin: 5em 0em 0em;
             padding: 5em 0em;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            left: 0;
+            height: auto;
         }
 
         nav.ui.large.menu {

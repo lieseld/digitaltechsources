@@ -14,7 +14,6 @@
 
     <!--Scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
-  </script>
     <style type="text/css">
     body {
       background-color: #DADADA;
@@ -42,25 +41,39 @@
     <form class="ui large form" method="POST" action="{{ route('login') }}">
         @csrf
       <div class="ui stacked segment">
-        <div class="field">
+        <div class="field {{ $errors->has('email') ? 'error' : '' }}">
           <div class="ui left icon input">
             <i class="user icon"></i>
             <input type="text" name="email" placeholder="E-mail address">
           </div>
         </div>
-        <div class="field">
+        <div class="field {{ $errors->has('password') ? 'error' : '' }}">
           <div class="ui left icon input">
             <i class="lock icon"></i>
             <input type="password" name="password" placeholder="Password">
           </div>
         </div>
         <div class=field">
-            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+            <div class="ui checkbox">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="remember">
+                    {{ __('Remember Me') }}
+                </label>
+            </div>
         </div>
+
+          @if ($errors->has('email'))
+              <div class="ui error visible message">
+                  <p>{{$errors->first('email')}}</p>
+              </div>
+          @endif
+
+          @if ($errors->has('password'))
+              <div class="ui error visible message">
+                  <p>{{$errors->first('password')}}</p>
+              </div>
+          @endif
+        <br/>
         <input type="submit" class="ui fluid large blue submit button" value="Login">
       </div>
 
@@ -69,7 +82,7 @@
     </form>
 
     <div class="ui message">
-      <a href="{{ route('register') }}">Sign Up</a>
+      <a href="{{ route('register') }}">Register</a>
     </div>
   </div>
 </div>
