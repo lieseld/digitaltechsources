@@ -32,6 +32,11 @@ class AdminController extends Controller
         return view('admin.users.user', compact('user'));
     }
 
+    public function editUser(Request $request, $id)
+    {
+        return response()->json(['msg' => $request->all()], 200);
+    }
+
     public function registrations()
     {
         $pending = User::where('activated', false)->get();

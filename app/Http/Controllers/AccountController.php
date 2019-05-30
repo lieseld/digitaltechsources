@@ -44,6 +44,6 @@ class AccountController extends Controller
 
     public function processDataDownload(Request $request)
     {
-        abort(503);
+        return response('nsg');
     }
 }

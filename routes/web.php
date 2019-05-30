@@ -29,6 +29,7 @@ Route::post('/account/data/download', 'AccountController@processDataDownload')->
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/users', 'AdminController@users')->name('admin.users');
 Route::get('/admin/users/{id}', 'AdminController@viewUser')->name('admin.users.view');
+Route::post('/admin/users/{id}', 'AdminController@editUser')->name('admin.users.edit');
 Route::get('/admin/registrations', 'AdminController@registrations')->name('admin.registrations');
 Route::get('/admin/registrations/{id}', 'AdminController@viewPendingRegistration')->name('admin.registrations.view');
 Route::get('/admin/registrations/{id}/activate', 'AdminController@activateUser')->name('admin.registrations.activateuser');
