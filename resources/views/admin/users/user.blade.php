@@ -339,6 +339,7 @@
                     <i class="save icon"></i>
                     Save Changes
                 </a>
+                <input type="hidden" name="user_id" value="{{$user->id}}">
                 </form>
                 <div id="returnMsg" class="ui hidden message"></div>
                 <script type="text/javascript">
@@ -353,6 +354,7 @@
 
                     function saveChanges() {
                         $('#saveButton').addClass('loading');
+                        var user_id = $("input[name=user_id").val();
                         var name = $("input[name=name]").val();
                         var alias = $("input[name=alias]").val();
                         var country = $("input[name=country]").val();
@@ -361,7 +363,7 @@
                         $.ajax({
                             type:'POST',
                             url:'{{route('admin.users.edit', $user->id)}}',
-                            data: {name:name, alias:alias, country:country, educational_institution:educational_institution, profession:profession},
+                            data: {user_id:user_id, name:name, alias:alias, country:country, educational_institution:educational_institution, profession:profession},
                             dataType: 'json',
                             headers:
                                 {
@@ -374,13 +376,13 @@
                                 $('#editButton').removeClass('disabled');
                                 $('#editButton').html('<i class="pencil icon"></i>Edit User');
                                 $('#returnMsg').html(data.msg);
-                                $('#returnMsg').removeClass('hidden');
+                                $('#returnMsg').removeClass('hidden').addClass('green');
                             },
-                            error: function(xhr, status, error) {
+                            error: function(data) {
+                                var errors = data.responseJSON;
+                                console.log(errors);
                                 $('#saveButton').text('Failed To Save Changes').removeClass('loading').removeClass('green').addClass('red').addClass('disabled');
-                                var err = eval("(" + xhr.responseText + ")");
-                                $('#returnMsg').text(err.Message);
-                                $('#returnMsg').removeClass('hidden').addClass('error');
+                                $('#returnMsg').removeClass('hidden').addClass('error').html('Invalid data');
                             }
                         });
                     }

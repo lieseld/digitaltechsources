@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\TutorialLog;
 use Illuminate\Http\Request;
-use Validator;$va
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -33,18 +33,24 @@ class AdminController extends Controller
         return view('admin.users.user', compact('user'));
     }
 
-    public function editUser(Request $request, $id)
+    public function editUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'max:255|string|required',
-            'alias' => 'max:255|string|sometimes',
-            'country' => 'max:255|string|required',
-            'educational_insitution' => 'max:255|string|required',
+            'user_id' => 'required',
+            'name' => 'max:255|required',
+            'alias' => 'sometimes|max:255',
+            'country' => 'max:255|required',
+            'educational_institution' => 'max:255|required',
             'profession' => 'required'
-        ])->validate();
-        $if ($validator->fails()) {
-            return response()->json(['error' => 'Some fields not correct'], 400);
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()->toJson()], 400);
         }
+
+        $user = User::whereId($request->get('user_id'))->firstOrFail();
+        $user->fill($request->all());
+        $user->save();
         return response()->json(['msg' => 'Saved changes'], 200);
     }
 
