@@ -56,4 +56,9 @@ class User extends Authenticatable
                 return null;
         }
     }
+
+    public function tutorialLog()
+    {
+        return $this->hasOne(TutorialLog::class);
+    }
 }

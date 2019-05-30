@@ -12,7 +12,12 @@
 */
 
 Auth::routes();
-Route::view('/register/completed', 'auth.registercompleted')->name('auth.registercompleted');
+Route::view('/register/completed', function(){
+	if (Auth::user()->activated) {
+		return redirect()->route('account.profile');
+	}
+	return view('auth.registercompleted');
+})->name('auth.registercompleted');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -23,9 +28,10 @@ Route::post('/account/data/download', 'AccountController@processDataDownload')->
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/users', 'AdminController@users')->name('admin.users');
+Route::get('/admin/users/{id}', 'AdminController@viewUser')->name('admin.users.view');
 Route::get('/admin/registrations', 'AdminController@registrations')->name('admin.registrations');
 Route::get('/admin/registrations/{id}', 'AdminController@viewPendingRegistration')->name('admin.registrations.view');
-
+Route::get('/admin/registrations/{id}/activate', 'AdminController@activateUser')->name('admin.registrations.activateuser');
 
 
 Route::get('/test', function(){

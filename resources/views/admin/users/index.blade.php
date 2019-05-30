@@ -7,7 +7,7 @@
             <div class="four wide column">
                 @include('includes.adminsidebar')
             </div>
-            <div class="twelve wide column">
+            <div class="twelve wide column">`
                 <h4>Administrators</h4>
                 <table id="adminDataTable" class="ui celled table">
                     <thead>
@@ -23,7 +23,7 @@
                                 <td>{{$admin->name}}</td>
                                 <td>{{$admin->group}}</td>
                                 <td>
-                                    <a href="#">
+                                    <a href="{{route('admin.users.view', $admin->id)}}">
                                         <i class="eye icon"></i>
                                     </a>
                                 </td>
@@ -46,7 +46,7 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->group}}</td>
                             <td>
-                                <a href="#">
+                                <a href="{{route('admin.users.view', $user->id)}}">
                                     <i class="eye icon"></i>
                                 </a>
                             </td>

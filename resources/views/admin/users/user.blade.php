@@ -2,13 +2,18 @@
 
 @section('content')
     <div class="ui main container">
-        <h2 class="ui header">Registrations</h2>
+        <h2 class="ui header">Users</h2>
         <div class="ui grid">
             <div class="four wide column">
                 @include('includes.adminsidebar')
             </div>
             <div class="twelve wide column">
-                <h4>Pending User | {{$user->name}}</h4>
+                <h3>
+                    {{$user->name}}
+                    @if ($user->administrator)
+                    <div class="ui pink label">Administrator</div>
+                    @endif
+                </h3>
                 <table class="ui celled table">
                     <thead>
                     <th>Variable</th>
@@ -22,6 +27,10 @@
                         <tr>
                             <td>Name</td>
                             <td>{{$user->name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Alias</td>
+                            <td>{{$user->alias}}</td>
                         </tr>
                         <tr>
                             <td>Email</td>
@@ -51,9 +60,21 @@
                                 {{$user->profession()}}
                             </td>
                         </tr>
+                        <tr>
+                            <td>Registered At</td>
+                            <td>
+                                {{$user->created_at}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Activated At</td>
+                            <td>
+                                {{$user->activated_at}}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-                <a href="{{ route('admin.registrations.activateuser', $user->id) }}" class="ui green left icon button">
+                <a href="#" class="ui green left icon button">
                     <i class="check icon"></i>
                     Activate User
                 </a>

@@ -96,7 +96,7 @@
                 @endif
                 <div class="field">
                     <div class="ui selection dropdown">
-                        <input type="hidden" name="profession">
+                        <input type="hidden" name="profession" value="{{ old('profession') }}">
                         <i class="dropdown icon"></i>
                         <div class="default text">What are you?</div>
                         <div class="menu">
@@ -107,9 +107,14 @@
                         </div>
                     </div>
                 </div>
+                @if ($errors->has('profession'))
+                    <div class="ui error visible message">
+                        <p>{{$errors->first('profession')}}</p>
+                    </div>
+                @endif                
                 <div class="field">
                     <div class="ui fluid search selection dropdown">
-                        <input type="hidden" name="country" value="af">
+                        <input type="hidden" name="country" value="{{ old('country') }}">
                         <i class="dropdown icon"></i>
                         <div class="default text">Select Country</div>
                         <div class="menu">
@@ -363,6 +368,11 @@
                         ;
                     </script>
                 </div>
+                @if ($errors->has('country'))
+                    <div class="ui error visible message">
+                        <p>{{$errors->first('country')}}</p>
+                    </div>
+                @endif           
                 <p>
                     Your data will be handled in accordance with the Privacy Policy. All registrations will be approved by administrators.
                 </p>
