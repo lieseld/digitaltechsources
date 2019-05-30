@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\TutorialLog;
 use Illuminate\Http\Request;
+use Validator;$va
 
 class AdminController extends Controller
 {
@@ -34,7 +35,17 @@ class AdminController extends Controller
 
     public function editUser(Request $request, $id)
     {
-        return response()->json(['msg' => $request->all()], 200);
+        $validator = Validator::make($request->all(), [
+            'name' => 'max:255|string|required',
+            'alias' => 'max:255|string|sometimes',
+            'country' => 'max:255|string|required',
+            'educational_insitution' => 'max:255|string|required',
+            'profession' => 'required'
+        ])->validate();
+        $if ($validator->fails()) {
+            return response()->json(['error' => 'Some fields not correct'], 400);
+        }
+        return response()->json(['msg' => 'Saved changes'], 200);
     }
 
     public function registrations()
@@ -45,7 +56,7 @@ class AdminController extends Controller
 
     public function viewPendingRegistration($id)
     {
-        $user = User::whereId($id)->firstOrfail();
+        $user = User::whereId($id)->firstOrfail();  
         if ($user->activiated) { abort(404); }
         return view('admin.registrations.pendinguser', compact('user'));
     }
