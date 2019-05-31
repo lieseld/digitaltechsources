@@ -14,7 +14,7 @@ class EditUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->foreign('group')->references('id')->on('user_groups');
+            $table->foreign('group_id')->references('id')->on('user_groups');
         });
     }
 

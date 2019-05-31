@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'alias', 'group', 'educational_institution', 'profession', 'activated', 'activated_at', 'country', 'email', 'password', 'administrator'
+        'name', 'alias', 'group_id', 'educational_institution', 'profession', 'activated', 'activated_at', 'country', 'email', 'password', 'administrator'
     ];
 
     /**
@@ -60,5 +60,10 @@ class User extends Authenticatable
     public function tutorialLog()
     {
         return $this->hasOne(TutorialLog::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(UserGroup::class, 'group_id');
     }
 }

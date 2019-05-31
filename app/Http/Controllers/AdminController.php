@@ -36,14 +36,16 @@ class AdminController extends Controller
     public function viewUserGroup($id)
     {
         $group = UserGroup::whereId($id)->firstOrFail();
-        return view('admin.users.groups.group', compact('group'));
+        $members = $group->members;
+        return view('admin.users.groups.group', compact('group', 'members'));
     }
 
     public function viewUser($id)
     {
         $user = User::whereId($id)->firstOrfail();
+        $groups = UserGroup::all();
         if ($user->activiated === false) { abort(404); }
-        return view('admin.users.user', compact('user'));
+        return view('admin.users.user', compact('user', 'groups'));
     }
 
     public function editUser(Request $request)

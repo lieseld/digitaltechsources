@@ -50,7 +50,10 @@
                     </div>
                     <div class="four wide column">
                         <label>Group</label>
-                        <h5 class="ui small header" style="margin-top: 0;">{{Auth::user()->group}}</h5>
+                        <div class="{{Auth::user()->group->colour}} text" style="margin-top: 0;">
+                            <i class="{{Auth::user()->group->colour}} circle icon"></i>
+                            {{Auth::user()->group->name}}
+                        </div>
                     </div>
                     <div class="four wide column">
                         <label>Form</label>

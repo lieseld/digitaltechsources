@@ -12,7 +12,7 @@
 */
 
 Auth::routes();
-Route::view('/register/completed', function(){
+Route::get('/register/completed', function(){
 	if (Auth::user()->activated) {
 		return redirect()->route('account.profile');
 	}
@@ -29,7 +29,7 @@ Route::post('/account/data/download', 'AccountController@processDataDownload')->
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/users', 'AdminController@users')->name('admin.users');
 Route::get('/admin/users/groups', 'AdminController@userGroups')->name('admin.users.groups');
-Route::get('/admin/users/groups/{id}', 'AdminController@viewUserGroup')->name('admin.users.groups.group');
+Route::get('/admin/users/groups/{id}', 'AdminController@viewUserGroup')->name('admin.users.groups.view');
 Route::get('/admin/users/{id}', 'AdminController@viewUser')->name('admin.users.view');
 Route::post('/admin/users/{id}', 'AdminController@editUser')->name('admin.users.edit');
 Route::get('/admin/registrations', 'AdminController@registrations')->name('admin.registrations');

@@ -38,6 +38,23 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Group</td>
+                            <td>
+                                <div class="editForm ui fluid search selection disabled dropdown">
+                                    <input type="hidden" name="group" value="{{ $user->group->id }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Select Group</div>
+                                    <div class="menu">
+                                        @foreach ($groups as $group)
+                                            <div class="item" data-value="{{$group->id}}">
+                                                <i class="{{$group->colour}} circle icon"></i> {{$group->name}}
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Email</td>
                             <td>{{$user->email}}</td>
                         </tr>
@@ -357,13 +374,14 @@
                         var user_id = $("input[name=user_id").val();
                         var name = $("input[name=name]").val();
                         var alias = $("input[name=alias]").val();
+                        var group = $("input[name=group").val();
                         var country = $("input[name=country]").val();
                         var educational_institution = $("input[name=educational_institution]").val();
                         var profession = $("input[name=profession]").val();
                         $.ajax({
                             type:'POST',
                             url:'{{route('admin.users.edit', $user->id)}}',
-                            data: {user_id:user_id, name:name, alias:alias, country:country, educational_institution:educational_institution, profession:profession},
+                            data: {user_id:user_id, name:name, alias:alias, group: group, country:country, educational_institution:educational_institution, profession:profession},
                             dataType: 'json',
                             headers:
                                 {

@@ -20,7 +20,10 @@
                         @foreach ($groups as $group)
                             <tr>
                                 <td>{{$group->id}}</td>
-                                <td>{{$group->name}}</td>
+                                <td style="color: {{$group->colour}}">
+                                    <i class="{{$group->colour}} circle icon"></i>
+                                    {{$group->name}}
+                                </td>
                                 <td>{{$group->short_name}}</td>
                                 <td>
                                     <a href="{{route('admin.users.groups.view', $group->id)}}">
@@ -134,6 +137,7 @@
                     <i class="plus icon"></i> Add Group
                 </a>
             </form>
+            <div class="ui hidden message" id="errorMsg"></div>
             <script type="text/javascript">
                 function submit() {
                     $('#submitB').addClass('loading');
@@ -152,11 +156,14 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(data) {
-
+                            $('#submitB').removeClass('loading').addClass('disabled').text('Added!');
+                            window.location.href = data.redirect;
                         },
-                        error: function(data) {
-                            $('#submitB').removeClass('loading').addClass('red').text('Failed');
-                            alert(data.responseJSON);
+                        error: function(xhr, status, error) {
+                            $('#submitB').removeClass('loading').addClass('red disabled').text('Failed');
+                            $('#errorMsg').removeClass('hidden').addClass('error').html(
+                                "<b>" + xhr.status + " " + xhr.statusText + "</b><br>" + error
+                            );
                         }
                     })
                 }

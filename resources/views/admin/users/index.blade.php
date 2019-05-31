@@ -21,7 +21,7 @@
                             <tr>
                                 <td>{{$admin->id}}</td>
                                 <td>{{$admin->name}}</td>
-                                <td>{{$admin->group}}</td>
+                                <td>{{$admin->group->name}}</td>
                                 <td>
                                     <a href="{{route('admin.users.view', $admin->id)}}">
                                         <i class="eye icon"></i>
@@ -44,7 +44,7 @@
                         <tr>
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->group}}</td>
+                            <td>{{$user->group->name}}</td>
                             <td>
                                 <a href="{{route('admin.users.view', $user->id)}}">
                                     <i class="eye icon"></i>
