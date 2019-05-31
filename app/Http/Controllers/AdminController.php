@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\TutorialLog;
+use App\UserGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,6 +25,18 @@ class AdminController extends Controller
         $users = User::where('administrator', false)->get();
         $admins = User::where('administrator', true)->get();
         return view('admin.users.index', compact('users', 'admins'));
+    }
+
+    public function userGroups()
+    {
+        $groups = UserGroup::all();
+        return view('admin.users.groups.index', compact('groups'));
+    }
+
+    public function viewUserGroup($id)
+    {
+        $group = UserGroup::whereId($id)->firstOrFail();
+        return view('admin.users.groups.group', compact('group'));
     }
 
     public function viewUser($id)
@@ -51,6 +64,8 @@ class AdminController extends Controller
         $user = User::whereId($request->get('user_id'))->firstOrFail();
         $user->fill($request->all());
         $user->save();
+
+        
         return response()->json(['msg' => 'Saved changes'], 200);
     }
 

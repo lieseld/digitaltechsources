@@ -4,8 +4,12 @@
         <i class="home icon"></i>
     </a>
     <a href="{{route('admin.users')}}" class="item {{ Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}">
-        <i class="users icon"></i>
+        <i class="user icon"></i>
         Users
+    </a>
+    <a href="{{route('admin.users.groups')}}" class="item {{ Request::is('admin/users/groups') || Request::is('admin/users/groups/*') ? 'active' : '' }}">
+        <i class="users icon"></i>
+        User Groups
     </a>
     <a href="{{route('admin.registrations')}}" class="item {{ Request::is('admin/registrations') || Request::is('admin/registrations/*') ? 'active' : '' }}">
         <i class="envelope open icon"></i>
