@@ -20,7 +20,7 @@
                         @foreach ($groups as $group)
                             <tr>
                                 <td>{{$group->id}}</td>
-                                <td style="color: {{$group->colour}}">
+                                <td>
                                     <i class="{{$group->colour}} circle icon"></i>
                                     {{$group->name}}
                                 </td>

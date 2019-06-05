@@ -21,6 +21,10 @@ Route::get('/register/completed', function(){
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/resources', 'ResourceController@resourcesIndex')->name('resources.index');
+Route::get('/resources/{id}', 'ResourceController@viewResource')->name('resources.view');
+
+
 Route::get('/account', 'AccountController@userProfile')->name('account.profile');
 Route::post('/account/changeemail', 'AccountController@changeEmail')->name('account.changeemail');
 Route::view('/account/data/download', 'accounts.data.download')->name('account.datadownload');

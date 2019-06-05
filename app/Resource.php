@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Resource extends Model
@@ -18,5 +19,14 @@ class Resource extends Model
     public function user()
     {
     	return $this->belongsTo(User::class);
+    }
+
+    public function age(){
+
+        $created = $this->created_at;
+        $now = Carbon::now();
+        $difference = $created->diff($now)->days;
+
+        return $difference;
     }
 }

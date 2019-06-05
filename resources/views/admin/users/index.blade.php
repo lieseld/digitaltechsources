@@ -21,7 +21,13 @@
                             <tr>
                                 <td>{{$admin->id}}</td>
                                 <td>{{$admin->name}}</td>
-                                <td>{{$admin->group->name}}</td>
+                                <td>
+                                    @if($admin->group)
+                                        {{$admin->group->name}}
+                                    @else
+                                        None
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{route('admin.users.view', $admin->id)}}">
                                         <i class="eye icon"></i>
@@ -44,7 +50,13 @@
                         <tr>
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->group->name}}</td>
+                            <td>
+                                @if($user->group)
+                                    {{$user->group->name}}
+                                @else
+                                    None
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{route('admin.users.view', $user->id)}}">
                                     <i class="eye icon"></i>

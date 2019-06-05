@@ -21,7 +21,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/se/dt-1.10.18/datatables.min.js"></script>
     <script src="{{asset('js/countries.js')}}"></script>
+    <script src="{{asset('js/socialfunction.js')}}"></script>
+
     <script src="{{ asset('introjs/intro.min.js') }}"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
     <style>
         .ui.footer.segment {
             margin: 5em 0em 0em;
@@ -49,7 +52,7 @@
                 <a href="{{ url('/') }}" class="header item">
                     <h3>Digitaltechsources</h3>
                 </a>
-                <a class="item">
+                <a href="{{route('resources.index')}}" class="{{Request::is('resources') || Request::is('resources/*') ? 'active' : ''}} item">
                     Resources
                 </a>
                 <a class="item">

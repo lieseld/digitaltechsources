@@ -41,7 +41,7 @@
                             <td>Group</td>
                             <td>
                                 <div class="editForm ui fluid search selection disabled dropdown">
-                                    <input type="hidden" name="group" value="{{ $user->group->id }}">
+                                    <input type="hidden" name="group" value="@if($user->group){{ $user->group->id }}@endif">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Select Group</div>
                                     <div class="menu">

@@ -40,6 +40,8 @@ class AdminController extends Controller
         return view('admin.users.groups.group', compact('group', 'members'));
     }
 
+    public function
+
     public function viewUser($id)
     {
         $user = User::whereId($id)->firstOrfail();
@@ -67,7 +69,7 @@ class AdminController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        
+
         return response()->json(['msg' => 'Saved changes'], 200);
     }
 
@@ -79,7 +81,7 @@ class AdminController extends Controller
 
     public function viewPendingRegistration($id)
     {
-        $user = User::whereId($id)->firstOrfail();  
+        $user = User::whereId($id)->firstOrfail();
         if ($user->activiated) { abort(404); }
         return view('admin.registrations.pendinguser', compact('user'));
     }

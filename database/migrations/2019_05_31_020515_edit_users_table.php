@@ -13,7 +13,7 @@ class EditUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function ($table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->foreign('group_id')->references('id')->on('user_groups');
         });
     }

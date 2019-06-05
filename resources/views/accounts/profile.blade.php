@@ -50,10 +50,14 @@
                     </div>
                     <div class="four wide column">
                         <label>Group</label>
+                        @if (Auth::user()->group)
                         <div class="{{Auth::user()->group->colour}} text" style="margin-top: 0;">
                             <i class="{{Auth::user()->group->colour}} circle icon"></i>
                             {{Auth::user()->group->name}}
                         </div>
+                        @else
+                        No group
+                        @endif
                     </div>
                     <div class="four wide column">
                         <label>Form</label>
