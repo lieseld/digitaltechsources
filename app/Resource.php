@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Resource extends Model
 {
     protected $fillable = [
-    	'name', 'category_id', 'user_id', 'short_description', 'long_description', 'platform', 'thumbnail_url', 'private', 'downloadable', 'comments_locked', '18_plus', 'upvotes', 'downloads', 'views', 'uploaded-at', 'last_edited-at', 'license', 'license_url'
+    	'name', 'category_id', 'user_id', 'short_description', 'long_description', 'platform', 'thumbnail_url', 'private', 'downloadable', 'comments_locked', 'adult_only', 'upvotes', 'downloads', 'views', 'uploaded-at', 'last_edited-at', 'license', 'license_url'
     ];
 
     public function category()
@@ -19,6 +19,11 @@ class Resource extends Model
     public function user()
     {
     	return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(ResourceComment::class);
     }
 
     public function age(){

@@ -27,7 +27,7 @@ class CreateResourcesTable extends Migration
             $table->boolean('private')->default(false);
             $table->boolean('downloadable')->default(true);
             $table->boolean('comments_locked')->default(false);
-            $table->boolean('18_plus')->default(false);
+            $table->boolean('adult_only')->default(false);
             $table->integer('upvotes')->default(0);
             $table->integer('downloads')->default(0);
             $table->integer('views')->default(0);

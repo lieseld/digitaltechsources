@@ -51,10 +51,17 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        <a onclick="upvoteResource()" class="left floated">
+                        @if (Auth::check())
+                        <a onclick="upvoteResource('{{$resource->id}}', '{{ Auth::id()}}')" class="left floated">
                           <i class="upvote-sect up arrow icon"></i>
-                            {{$resource->upvotes}}
+                            <span class="upvote-sect" id="resource-upvote-count-{{$resource->id}}">{{$resource->upvotes}}</span>
                         </a>
+                        @else
+                            <div class="left floated">
+                                <i class="upvote-sect up arrow icon"></i>
+                                <span id="resource-upvote-count-{{$resource->id}}">{{$resource->upvotes}}</span>
+                            </div>
+                        @endif
                         <a class="right floated">
                           <i class="eye icon"></i>
                           View

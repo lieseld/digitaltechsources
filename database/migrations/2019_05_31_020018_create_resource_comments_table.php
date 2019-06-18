@@ -17,6 +17,8 @@ class CreateResourceCommentsTable extends Migration
             $table->integer('id')->unique()->unsigned()->autoIncrement();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('resource_id')->unsigned();
+            $table->foreign('resource_id')->references('id')->on('resources');
             $table->text('content');
             $table->dateTime('posted_at');
             $table->dateTime('edited_at');

@@ -22,7 +22,12 @@ Route::get('/register/completed', function(){
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/resources', 'ResourceController@resourcesIndex')->name('resources.index');
+Route::get('/resources/upload', 'ResourceController@uploadResource')->name('resources.upload');
 Route::get('/resources/{id}', 'ResourceController@viewResource')->name('resources.view');
+Route::post('/resources/social/function/upvote', 'ResourceController@upvote')->name('resource.social.upvote');
+Route::post('/resources/social/function/toplevelcomment', 'ResourceController@topLevelComment')->name('resources.social.toplevelcomment');
+
+Route::post('/moderation/function/submitcontentreport', 'ContentController@submitContentReport')->name('moderation.submitcontentreport');
 
 
 Route::get('/account', 'AccountController@userProfile')->name('account.profile');

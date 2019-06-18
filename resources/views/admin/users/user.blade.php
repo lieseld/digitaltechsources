@@ -41,7 +41,7 @@
                             <td>Group</td>
                             <td>
                                 <div class="editForm ui fluid search selection disabled dropdown">
-                                    <input type="hidden" name="group" value="@if($user->group){{ $user->group->id }}@endif">
+                                    <input type="hidden" name="group_id" value="@if($user->group){{ $user->group->id }}@endif">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Select Group</div>
                                     <div class="menu">
@@ -374,14 +374,14 @@
                         var user_id = $("input[name=user_id").val();
                         var name = $("input[name=name]").val();
                         var alias = $("input[name=alias]").val();
-                        var group = $("input[name=group").val();
+                        var group = $("input[name=group_id]").val();
                         var country = $("input[name=country]").val();
                         var educational_institution = $("input[name=educational_institution]").val();
                         var profession = $("input[name=profession]").val();
                         $.ajax({
                             type:'POST',
                             url:'{{route('admin.users.edit', $user->id)}}',
-                            data: {user_id:user_id, name:name, alias:alias, group: group, country:country, educational_institution:educational_institution, profession:profession},
+                            data: {user_id:user_id, name:name, alias:alias, group_id: group, country:country, educational_institution:educational_institution, profession:profession},
                             dataType: 'json',
                             headers:
                                 {

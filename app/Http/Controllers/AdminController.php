@@ -40,8 +40,6 @@ class AdminController extends Controller
         return view('admin.users.groups.group', compact('group', 'members'));
     }
 
-    public function
-
     public function viewUser($id)
     {
         $user = User::whereId($id)->firstOrfail();
@@ -64,6 +62,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()->toJson()], 400);
         }
+
 
         $user = User::whereId($request->get('user_id'))->firstOrFail();
         $user->fill($request->all());
